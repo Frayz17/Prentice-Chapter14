@@ -1,0 +1,50 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.geometry.Insets;
+import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.util.*;
+
+public class Upr143 extends Application {
+	@Override
+	public void start(Stage primaryStage) {
+		// Create a HBox pane for store a cards
+		HBox hBoxPane = new HBox(10);
+		hBoxPane.setPadding(new Insets(15, 15, 15, 15));
+		
+		// Create  stack of integers for 52 cards
+		final int CARDS_AMOUNT = 52;
+		ArrayList<Integer> stackOfIntegers = new ArrayList<>();
+		for (int i = 0; i < CARDS_AMOUNT; i++) {
+			stackOfIntegers.add(i+1);
+		}
+		Collections.shuffle(stackOfIntegers); // shuffle numbers in the stack
+		
+		// Create a three strings from first stackOfIntegers slots for path to cards
+		String firstCard = "image/card/" + stackOfIntegers.get(0) + ".png";
+		String secondCard = "image/card/" + stackOfIntegers.get(1) + ".png";
+		String thirdCard = "image/card/" + stackOfIntegers.get(2) + ".png";
+		
+		// Create objects with images and put them on the pane
+		Image firstImageCard = new Image(firstCard);
+		Image secondImageCard = new Image(secondCard);
+		Image thirdImageCard = new Image(thirdCard);
+		
+		ImageView firstSlot = new ImageView(firstImageCard);
+		ImageView secondSlot = new ImageView(secondImageCard);
+		ImageView thirdSlot = new ImageView(thirdImageCard);
+		
+		hBoxPane.getChildren().add(firstSlot);
+		hBoxPane.getChildren().add(secondSlot);
+		hBoxPane.getChildren().add(thirdSlot);
+		
+		// Create a scene and place it in the stage
+		Scene scene = new Scene(hBoxPane);
+		primaryStage.setTitle("Upr143");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}	
+}

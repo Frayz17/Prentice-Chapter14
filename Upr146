@@ -108,7 +108,7 @@ public class Upr146 extends Application {
                     x += 30;
                     //gridPane.add(firstWhiteRect[j], i, j);
                 }
-	    }
+	        }
+        }  
     }
-}
 }

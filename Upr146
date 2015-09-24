@@ -1,16 +1,17 @@
+
 /**
 (Game: display a checkerboard) Write a program that displays a checkerboard
 in which each white and black cell is a Rectangle with a fill color black or
 white, as shown in Figure 14.44c.
 */
-package Chapter14;
+
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.text.Text;
+//import javafx.scene.text.Text;
 import javafx.scene.shape.Rectangle;
 
 public class Upr146 extends Application {
@@ -21,21 +22,93 @@ public class Upr146 extends Application {
 		
         // Create two dimensional arrow for matrix
         int[][] boardMatrix = new int[8][8];
-        // Create array of rectangles
-        Rectangle[] rectangle = new Rectangle[64];
-		
+        // Create two arrays of rectangles
+        Rectangle[] firstBlackRect = new Rectangle[8];
+	Rectangle[] firstWhiteRect = new Rectangle[8];
+        for (int i = 0; i < firstBlackRect.length; i++) {
+            if (i % 2 == 0) {
+	        firstBlackRect[i] = new Rectangle(0, 0, 40, 40);
+                firstBlackRect[i].setFill(Color.BLACK);
+                
+                firstWhiteRect[i] = new Rectangle(0, 0, 40, 40);
+                firstWhiteRect[i].setFill(Color.WHITE);
+            }
+            else {
+                firstBlackRect[i] = new Rectangle(0, 0, 40, 40);
+                firstBlackRect[i].setFill(Color.WHITE);
+                
+                firstWhiteRect[i] = new Rectangle(0, 0, 40, 40);
+                firstWhiteRect[i].setFill(Color.BLACK);
+            }
+        }
+        
         // Creating loop to build matrix
+        int switcher = 1;
+        int x = 0;
+        int y = 0;
         for (int i = 0; i < boardMatrix.length; i++) {
             for (int j = 0; j < boardMatrix[i].length; j++) {
-  	        if (i % 2 != 0) {
-	            //gridPane.getChildren.add(new Rectangle);
+  	        if (i % 2 == 0) {
+                    //gridPane.add(firstBlackRect[j], i, j);
 	        }
+                else {
+                   // gridPane.add(firstWhiteRect[j], i, j);
+                }
 	    }
         }
-		
+        
+        // Create s scene and place it at the stage
+        Scene scene = new Scene(gridPane, 350, 350);
+        primaryStage.setTitle("Upr146");
+        primaryStage.setScene(scene);
+        primaryStage.show(); 	
     }
     
     public static void main(String[] args) {
-        Application.launch(args);
+         // Create two dimensional arrow for matrix
+        int[][] boardMatrix = new int[8][8];
+        // Create two arrays of rectangles
+        Rectangle[] firstBlackRect = new Rectangle[8];
+	Rectangle[] firstWhiteRect = new Rectangle[8];
+        for (int i = 0; i < firstBlackRect.length; i++) {
+            if (i % 2 == 0) {
+	        firstBlackRect[i] = new Rectangle(0, 0, 40, 40);
+                firstBlackRect[i].setFill(Color.BLACK);
+                
+                firstWhiteRect[i] = new Rectangle(0, 0, 40, 40);
+                firstWhiteRect[i].setFill(Color.WHITE);
+            }
+            else {
+                firstBlackRect[i] = new Rectangle(0, 0, 40, 40);
+                firstBlackRect[i].setFill(Color.WHITE);
+                
+                firstWhiteRect[i] = new Rectangle(0, 0, 40, 40);
+                firstWhiteRect[i].setFill(Color.BLACK);
+            }
+        }
+        
+        // Creating loop to build matrix
+        int switcher = 1;
+        int x;
+        int y;
+        for (int i = 0; i < boardMatrix.length; i++) {
+            y = i;
+            x = 0;
+            for (int j = 0; j < boardMatrix[i].length; j++) {
+  	        if (i % 2 == 0) {
+                    firstBlackRect[j].setX(x);
+                    firstBlackRect[j].setY(y);
+                    pane.getChildren().add(firstBlackRect[j]);
+                    x += 30;
+	        }
+                else {
+                    firstWhiteRect[j].setX(x);
+                    firstWhiteRect[j].setY(y);
+                    //pane.getChildren().add(firstWhiteRect[j]);
+                    x += 30;
+                    //gridPane.add(firstWhiteRect[j], i, j);
+                }
+	    }
     }
+}
 }

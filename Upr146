@@ -1,0 +1,42 @@
+/**
+(Game: display a checkerboard) Write a program that displays a checkerboard
+in which each white and black cell is a Rectangle with a fill color black or
+white, as shown in Figure 14.44c.
+*/
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.scene.text.Text;
+import javafx.scene.shape.Rectangle;
+
+public class Upr146 {
+	@Override
+	public void start(Stage primaryStage) {
+		// Create a GridPane
+		GridPane gridPane = new GridPane();
+		
+		// Create two dimensional arrow for matrix
+		int[][] boardMatrix = new int[8][8];
+        // Create array of rectangles
+		Rectangle[] rectangle = new Rectangle[64];
+		
+		// Creating loop to build matrix
+		for (int i = 0; i < boardMatrix.length; i++) {
+			for (int j = 0; j < boardMatrix[i].length) {
+				if (i % 2 != 0) {
+					gridPane.getChildren.add(new Rectangle);
+				}
+			}
+		}
+		
+	}
+}
+
+
+
+
+
+

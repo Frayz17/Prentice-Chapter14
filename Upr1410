@@ -1,0 +1,87 @@
+/**
+(Display a cylinder) Write a program that draws a cylinder, as shown in
+Figure 14.45b. You can use the following method to set the dashed stroke for an arc:
+ arc.getStrokeDashArray().addAll(6.0, 21.0);
+*/
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.Line;
+import javafx.geometry.Insets;
+
+
+
+public class Upr1410 extends Application {
+	@Override
+	public void start(Stage primaryStage) {
+		// Create pane
+		Pane pane = new Pane();
+		pane.setPadding(new Insets(20, 20, 20, 20));
+		pane.setPrefSize(300, 400);
+		
+		// Create an ellipse
+		Ellipse ellipse = new Ellipse();
+		//ellipse.centerXProperty().bind(pane.widthProperty().divide(2));
+		//ellipse.centerYProperty().bind(pane.heightProperty().divide(4));
+		ellipse.setCenterX(150);
+		ellipse.setCenterY(100);
+		ellipse.setRadiusX(100);
+		ellipse.setRadiusY(40);
+		ellipse.setFill(Color.WHITE);
+		ellipse.setStroke(Color.BLACK);
+		
+		// Create points for the line
+		double xUpLeft, yUpLeft, xUpRight, yUpRight;
+		double xDownLeft, yDownLeft, xDownRight, yDownRight;
+		// initialize them
+		xUpLeft = ellipse.getCenterX() - 100;
+		yUpLeft = ellipse.getCenterY();
+		xUpRight = ellipse.getCenterX() + 100;
+		yUpRight = ellipse.getCenterY();
+		
+		xDownLeft = xUpLeft;
+		yDownLeft = yUpLeft + 200;
+		xDownRight = xUpRight;
+		yDownRight = yUpRight + 200;
+		
+		// Create two lines
+		Line lineLeft = new Line(xUpLeft, yUpLeft, xDownLeft, yDownLeft);
+		Line lineRight = new Line(xUpRight, yUpRight, xDownRight, yDownRight);
+		
+		// Create two arcs
+		double xArc = ellipse.getCenterX();
+		double yArc = ellipse.getCenterY() + 200;
+		double arcRadiusX = ellipse.getRadiusX();
+		double arcRadiusY = ellipse.getRadiusY();
+		Arc arcBottom = new Arc(xArc, yArc, arcRadiusX, arcRadiusY, 0, -180);
+		arcBottom.setFill(Color.WHITE);
+		arcBottom.setStroke(Color.BLACK);
+		Arc arcTop = new Arc(xArc, yArc, arcRadiusX, arcRadiusY, 0, 180);
+		arcTop.setFill(Color.WHITE);
+		arcTop.setStroke(Color.BLACK);
+		arcTop.getStrokeDashArray().addAll(6.0, 21.0);
+		
+		// place elements at the pane
+		pane.getChildren().add(ellipse);
+		pane.getChildren().add(lineLeft);
+		pane.getChildren().add(lineRight);
+		pane.getChildren().add(arcBottom);
+		pane.getChildren().add(arcTop);
+		
+		
+		// Create a scene and place it in the stage
+    	Scene scene = new Scene(pane);
+    	primaryStage.setTitle("Upr143");
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
+	}
+	
+	public static void main(String[] args) {
+		Application.launch(args);
+	}
+}

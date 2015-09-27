@@ -1,0 +1,79 @@
+/**
+ (Create four fans) Write a program that places four fans in a GridPane with two
+ rows and two columns, as shown in Figure 14.45b.
+*/
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
+import javafx.geometry.Insets;
+
+public class Upr149 extends Application {
+    @Override
+    public void start(Stage primaryStage) {
+    	// Create a Pane
+    	Pane pane = new Pane();
+    	pane.setPadding(new Insets(10, 10, 10, 10));
+    	int amountRowCol = 2;
+    	// Create four Circles
+    	Circle[][] circles = new Circle[amountRowCol][amountRowCol];
+    	
+        
+    	int radius = 50;
+    	// create container for circle center coords
+    	int amountCircles = 4;
+    	double[] xCenter = new double[amountCircles];
+    	double[] yCenter = new double[amountCircles];
+    	int countCircles = 0;
+    	double x, y;
+    	
+        // create for circles with specified coords
+    	for (int i = 0; i < circles.length; i++) {
+    		y = 150 * (i+1);
+    		for (int j = 0; j < circles[i].length; j++) {
+    			x = 150 * (j+1);
+    			
+    			circles[i][j] = new Circle(x, y, radius);
+    			circles[i][j].setFill(Color.WHITE);
+    			circles[i][j].setStroke(Color.BLACK);
+    			xCenter[countCircles] = circles[i][j].getCenterX();
+    			yCenter[countCircles] = circles[i][j].getCenterY();
+    			
+    			countCircles++;
+    			pane.getChildren().add(circles[i][j]);
+    		}
+    	}
+    	
+    	// Create arc attributes
+    	countCircles = 0;
+    	int arcRadius = 40;
+    	int lengthArc = 20;
+    	int[] angles = {35, 125, 215, 305};
+    	Arc[] arc = new Arc[4];
+    	
+    	// Create and place arcs on the pane
+    	for (int i = 0; i < arc.length; i++) {
+    		for (int j = 0; j < arc.length; j++) {
+    			arc[j] = new Arc(xCenter[countCircles], yCenter[countCircles], 
+    					arcRadius, arcRadius, angles[j], lengthArc);
+    			arc[j].setType(ArcType.ROUND);
+    			pane.getChildren().add(arc[j]);
+    	    }
+    		countCircles++;
+    	}
+    	
+    	// Create a scene and place it in the stage
+    	Scene scene = new Scene(pane);
+    	primaryStage.setTitle("Upr143");
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
+    }
+    
+    public static void main(String[] args) {
+		Application.launch(args);
+	}
+}
